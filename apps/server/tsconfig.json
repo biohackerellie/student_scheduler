@@ -1,6 +1,6 @@
 
 {
-	"extends": "../tsconfig.base.json",
+
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "esnext",
@@ -17,8 +17,15 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,                               
     "allowJs": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"./src/*"
+			]
+		},
     "types": [
       "bun-types" // add Bun global
     ]
+
   }
 }

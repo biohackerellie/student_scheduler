@@ -4,21 +4,33 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "bunx --bun vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@azure/msal-browser": "^3.7.0",
+    "@azure/msal-react": "^2.0.9",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@t3-oss/env-core": "^0.7.3",
     "@tanstack/react-query": "^5.17.15",
     "@tanstack/react-query-devtools": "^5.17.15",
     "@tanstack/react-router": "^1.4.9",
+    "@tanstack/router-cli": "^1.4.9",
     "@tanstack/router-devtools": "^1.4.9",
+    "@tanstack/router-vite-plugin": "latest",
     "axios": "^1.6.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "db": "workspace:../../packages/db",
+    "lucide-react": "^0.311.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "types": "workspace:../../packages/types"
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7",
+    "types": "workspace:../../packages/types",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
@@ -34,6 +46,6 @@
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "latest"
   }
 }
