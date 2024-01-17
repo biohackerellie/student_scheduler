@@ -3,6 +3,8 @@ import { FileRoute, useRouter } from '@tanstack/react-router';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { useMsal, useAccount } from '@azure/msal-react';
+import { loginRequest } from '@/lib/msal';
+import { msalInstance } from '@/main.tsx';
 
 export const Route = new FileRoute('/login')
   .createRoute({
@@ -14,29 +16,23 @@ export const Route = new FileRoute('/login')
     component: LoginComponent,
   });
 
-const LoginButton = () => {
-  const router = useRouter();
-  const { auth } = Route.useRouteContext();
-  const { instance, accounts } = useMsal();
-  const account = useAccount(accounts[0] || {});
-
-  const handleLogin = () => {
-    instance.loginPopup().catch((e) => {
-      console.error(e);
-    });
-    auth.status = 'authenticated';
-    auth.user = account;
-    router.invalidate();
-  };
-
-  return <Button onClick={handleLogin}>Login</Button>;
-};
-
 function LoginComponent() {
   const router = useRouter();
   const { auth } = Route.useRouteContext();
   const search = Route.useSearch();
+  const { instance, accounts } = useMsal();
+  const account = msalInstance.getActiveAccount();
 
+  const handleLogin = () => {
+    instance.loginPopup(loginRequest).catch((e) => {
+      console.error(e);
+    });
+
+    auth.status = 'authenticated';
+    auth.user = account?.username;
+    console.log('account: ', account);
+    router.invalidate();
+  };
   React.useLayoutEffect(() => {
     if (auth.status === 'authenticated') {
       router.history.push(search.redirect ?? '/');
@@ -45,13 +41,13 @@ function LoginComponent() {
 
   return auth.status === 'authenticated' ? (
     <div>
-      Logged in as {auth.user.name}
+      Logged in as {auth.user}
       <div>
         <Button
           onClick={() => {
             auth.status = 'unauthenticated';
             auth.user = undefined;
-
+            msalInstance.logout();
             router.invalidate();
           }}
         >
@@ -64,7 +60,7 @@ function LoginComponent() {
       <div>you must login</div>
       <div />
 
-      <LoginButton />
+      <Button onClick={() => handleLogin()}>Login</Button>
     </div>
   );
 }

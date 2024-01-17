@@ -15,7 +15,7 @@ export const Route = rootRouteWithContext<{
 function App() {
   return (
     <>
-      <main>
+      <main className="h-full w-auto">
         <h1>App</h1>
       </main>
       <hr />

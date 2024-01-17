@@ -1,9 +1,11 @@
-import * as React from 'react';
 import { FileRoute, Link, redirect } from '@tanstack/react-router';
-import { auth } from '../lib/auth.tsx';
+import { useIsAuthenticated } from '@azure/msal-react';
+import { msalInstance } from '@/main.tsx';
+import { UserRole } from 'db/types';
+import { AuthCheck } from '@/lib/isAuthenticated.tsx';
 
 export const Route = new FileRoute('/_auth').createRoute({
-  beforeLoad: ({ context, location }) => {
+  beforeLoad: async ({ context, location }) => {
     if (context.auth.status === 'unauthenticated') {
       throw redirect({
         to: '/login',
@@ -11,9 +13,24 @@ export const Route = new FileRoute('/_auth').createRoute({
           redirect: location.href,
         },
       });
+    } else if (context.auth.status === 'authenticated') {
+      if (context.auth.roles[0].includes('student')) {
+        throw redirect({
+          to: '/student',
+        });
+      } else if (context.auth.roles[0].includes('teacher')) {
+        throw redirect({
+          to: '/teacher',
+        });
+      } else if (context.auth.roles[0].includes('admin')) {
+        throw redirect({
+          to: '/admin',
+        });
+      } else if (context.auth.roles[0].includes('secretary')) {
+        throw redirect({
+          to: '/secretary',
+        });
+      }
     }
-    return {
-      user: auth.user,
-    };
   },
 });
