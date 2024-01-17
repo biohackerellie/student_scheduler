@@ -1,38 +1,8 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@auth/core": "^0.20.0",
-    "@auth/prisma-adapter": "^1.0.14",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "geist": "^1.2.1",
-    "lucide-react": "^0.311.0",
-    "next": "14.0.4",
-    "next-auth": "beta",
-    "react": "^18",
-    "react-dom": "^18",
-    "shared": "link:shared",
-		"@prisma/client": "latest",
-    "tailwind-merge": "^2.2.0",
-    "tailwindcss-animate": "^1.0.7"
-  },
-  "devDependencies": {
-    "typescript": "latest",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.4"
-  }
+	"name": "Steam",
+	"version": "0.0.1",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	]
 }

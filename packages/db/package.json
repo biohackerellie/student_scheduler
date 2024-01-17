@@ -1,0 +1,14 @@
+{
+	"name": "db",
+	"version": "0.0.1",
+	"main": "index.ts",
+	"dependencies": {
+		"@prisma/client": "latest"
+	},
+	"devDependencies": {
+		"typescript": "latest",
+		"@types/node": "latest",
+		"prisma": "latest"
+	}
+
+}

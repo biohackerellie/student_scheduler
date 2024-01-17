@@ -1,24 +1,23 @@
+//tsconfig.base.json
 {
-	"compileOnSave": false,
 	"compilerOptions": {
-		"rootDir": ".",
-		"sourceMap": true,
-		"declaration": false,
-		"moduleResolution": "node",
-		"emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-		"importHelpers": true,
-		"target": "ESNext",
-		"module": "ESNext",
-		"lib": ["ESNext", "DOM"],
+		"lib": ["ESNext"],
+		"module": "esnext",
+		"target": "esnext",
+		"moduleResolution": "bundler",
+		"moduleDetection": "force",
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+		"composite": true,
+		"strict": true,
+		"downlevelIteration": true,
 		"skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "importsNotUsedAsValues": "error",
-		"baseUrl": ".",
-		"paths": {
-			"@STEAM/client": ["./client/src/**/*"],
-			"@STEAM/server": ["./server/src/**/*"],
-			"@STEAM/shared": ["./shared/**/*"],
-		}
+		"jsx": "react-jsx",
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"allowJs": true,
+		"types": [
+			"bun-types" // add Bun global
+		]
 	}
 }
